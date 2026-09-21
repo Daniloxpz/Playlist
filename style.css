@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+h2 {
+    color: #1db954;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+a {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+hr {
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid #282828;
+    margin: 20px 0;
+}
+
+/* Formulário de Login */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 320px;
+}
+
+input {
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background-color: #282828;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #1db954;
+}
+
+/* Botões */
+button {
+    padding: 14px;
+    border-radius: 25px;
+    border: none;
+    background-color: #1db954;
+    color: #000;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #1ed760;
+    transform: scale(1.02);
+}
+
+.btn-remover {
+    background-color: #e91429;
+    color: white;
+}
+
+.btn-remover:hover {
+    background-color: #f01e35;
+}
+
+/* Cards das Músicas */
+.musica-item {
+    background-color: #181818;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    transition: background-color 0.3s;
+}
+
+.musica-item:hover {
+    background-color: #282828;
+}
+
+.musica-info {
+    font-size: 16px;
+}
+
+.musica-info strong {
+    font-size: 18px;
+    color: #fff;
+}
+
+audio {
+    width: 100%;
+    height: 40px;
+    outline: none;
+}
