@@ -3,8 +3,10 @@ session_start();
 
 $host = 'localhost';
 $user = 'root';
-$pass = ''; 
-$db   = 'playlist_app'; // O nome correto que está no banco.sql
+$pass = '';
+$db   = 'playlist_app';
+
+define('ADMIN_PASSWORD', '123456'); // defina sua senha de admin aqui
 
 $conn = new mysqli($host, $user, $pass, $db);
 

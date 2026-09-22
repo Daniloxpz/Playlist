@@ -4,15 +4,22 @@ if (!isset($_SESSION['usuario_id'])) { header("Location: index.php"); exit; }
 $usuario_id = $_SESSION['usuario_id'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['remover_id'])) {
-    $id_relacao = $_POST['remover_id'];
-    $conn->query("DELETE FROM playlist WHERE id = $id_relacao AND usuario_id = $usuario_id");
+    $id_relacao = (int) $_POST['remover_id'];
+
+    $stmt = $conn->prepare("DELETE FROM playlist WHERE id = ? AND usuario_id = ?");
+    $stmt->bind_param("ii", $id_relacao, $usuario_id);
+    $stmt->execute();
 }
 
-$query = "SELECT p.id as id_relacao, m.titulo, m.artista, m.url_audio 
-          FROM playlist p 
-          JOIN musicas m ON p.musica_id = m.id 
-          WHERE p.usuario_id = $usuario_id";
-$minha_playlist = $conn->query($query);
+$stmt = $conn->prepare("
+    SELECT p.id as id_relacao, m.titulo, m.artista, m.url_audio
+    FROM playlist p
+    JOIN musicas m ON p.musica_id = m.id
+    WHERE p.usuario_id = ?
+");
+$stmt->bind_param("i", $usuario_id);
+$stmt->execute();
+$minha_playlist = $stmt->get_result();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -23,32 +30,41 @@ $minha_playlist = $conn->query($query);
     <title>Minha Playlist</title>
 </head>
 <body>
-    <h2>Minha Playlist</h2>
-    <div><a href="musicas.php">Voltar ao Catálogo</a> | <a href="logout.php">Sair</a></div>
-    <hr>
-    
-    <?php if ($minha_playlist->num_rows == 0): ?>
-        <p>Sua playlist está vazia.</p>
-    <?php else: ?>
-        <?php while ($m = $minha_playlist->fetch_assoc()): 
-            // Converte o link normal do YouTube para o formato Embed
-            $link = htmlspecialchars($m['url_audio']);
-            $link = str_replace("watch?v=", "embed/", $link);
-            $link = str_replace("youtu.be/", "youtube.com/embed/", $link);
-        ?>
-            <div class="musica-item">
-                <div class="musica-info">
-                    <strong><?= htmlspecialchars($m['titulo']) ?></strong> - <?= htmlspecialchars($m['artista']) ?>
-                </div>
-                <!-- Player do YouTube -->
-                <iframe width="100%" height="200" src="<?= $link ?>" frameborder="0" allow="autoplay; encrypted-media" style="border-radius: 8px;"></iframe>
-                
-                <form method="POST" style="max-width: 100%; margin-top: 10px;">
-                    <input type="hidden" name="remover_id" value="<?= $m['id_relacao'] ?>">
-                    <button type="submit" class="btn-remover" style="width: 100%;">Remover da Playlist</button>
-                </form>
+    <header class="topbar">
+        <h1 class="logo">playlist<span>.</span></h1>
+        <nav>
+            <a href="musicas.php">Catálogo</a>
+            <a href="logout.php">Sair</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2 class="titulo-secao">Minha playlist</h2>
+
+        <?php if ($minha_playlist->num_rows == 0): ?>
+            <p class="vazio">Sua playlist está vazia. Volte ao catálogo e adicione algumas músicas.</p>
+        <?php else: ?>
+            <div class="grid-musicas">
+                <?php while ($m = $minha_playlist->fetch_assoc()):
+                    $link = htmlspecialchars($m['url_audio']);
+                    $link = str_replace("watch?v=", "embed/", $link);
+                    $link = str_replace("youtu.be/", "youtube.com/embed/", $link);
+                ?>
+                    <article class="musica-item">
+                        <div class="musica-info">
+                            <strong><?= htmlspecialchars($m['titulo']) ?></strong>
+                            <span><?= htmlspecialchars($m['artista']) ?></span>
+                        </div>
+                        <iframe width="100%" height="200" src="<?= $link ?>" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+
+                        <form method="POST">
+                            <input type="hidden" name="remover_id" value="<?= $m['id_relacao'] ?>">
+                            <button type="submit" class="btn-remover">Remover da playlist</button>
+                        </form>
+                    </article>
+                <?php endwhile; ?>
             </div>
-        <?php endwhile; ?>
-    <?php endif; ?>
+        <?php endif; ?>
+    </main>
 </body>
 </html>

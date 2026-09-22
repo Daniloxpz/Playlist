@@ -1,126 +1,354 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    --bg: #0c0d10;
+    --bg-elevado: #16171b;
+    --borda: #232428;
+    --borda-hover: #313239;
+    --texto: #edeef0;
+    --texto-fraco: #8b8c93;
+    --texto-mais-fraco: #55565e;
+    --acento: #4ade80;
+    --acento-escuro: #17a558;
+    --erro: #f16565;
+    --raio: 10px;
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background-color: #121212;
-    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(74, 222, 128, 0.06), transparent 40%),
+        var(--bg);
+    color: var(--texto);
+    min-height: 100vh;
+}
+
+.logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: var(--acento);
+}
+
+/* Topbar */
+.topbar {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    padding: 40px 20px;
+    padding: 18px 32px;
+    border-bottom: 1px solid var(--borda);
+    background-color: rgba(22, 23, 27, 0.6);
+    backdrop-filter: blur(6px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
-h2 {
-    color: #1db954;
-    margin-bottom: 20px;
-    font-size: 28px;
+.topbar nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
 }
 
-a {
-    color: #b3b3b3;
+.topbar nav a {
+    color: var(--texto-fraco);
     text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.topbar nav a:hover {
+    color: var(--texto);
+}
+
+.badge-admin {
+    background-color: rgba(74, 222, 128, 0.12);
+    color: var(--acento);
+    border: 1px solid rgba(74, 222, 128, 0.35);
+    font-size: 11px;
     font-weight: 600;
-    margin: 0 10px;
-    transition: color 0.3s;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 20px;
 }
 
-a:hover {
-    color: #ffffff;
+/* Container geral */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 36px 24px 60px;
 }
 
-hr {
-    width: 100%;
-    max-width: 600px;
-    border: 1px solid #282828;
-    margin: 20px 0;
+.titulo-secao {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--texto);
+    margin: 36px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* Formulário de Login */
-form {
+.titulo-secao::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--borda);
+}
+
+/* Avisos */
+.aviso {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
+
+.aviso-ok {
+    background-color: rgba(74, 222, 128, 0.08);
+    border-color: rgba(74, 222, 128, 0.3);
+    color: var(--acento);
+}
+
+.aviso-erro {
+    background-color: rgba(241, 101, 101, 0.08);
+    border-color: rgba(241, 101, 101, 0.3);
+    color: var(--erro);
+}
+
+.vazio {
+    color: var(--texto-mais-fraco);
+    font-size: 14px;
+}
+
+/* Painel de cadastro */
+.painel-cadastro {
+    background-color: var(--bg-elevado);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    padding: 22px;
+}
+
+.painel-cadastro h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 14px;
+    color: #cfd0d4;
+}
+
+.form-linha {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.form-linha input {
+    flex: 1 1 160px;
+}
+
+.form-linha button {
+    flex: 0 0 auto;
+}
+
+/* Card de login */
+.card-login {
+    max-width: 380px;
+    margin: 100px auto;
+    background-color: var(--bg-elevado);
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    padding: 36px 32px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.card-login .subtitle {
+    color: var(--texto-fraco);
+    font-size: 13px;
+    margin: 8px 0 26px;
+}
+
+.card-login form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    max-width: 320px;
+    gap: 12px;
 }
 
+/* Checkbox de admin */
+.checkbox-linha {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 13px;
+    color: var(--texto-fraco);
+    cursor: pointer;
+    padding: 4px 2px;
+    text-align: left;
+}
+
+.checkbox-linha input[type="checkbox"] {
+    appearance: none;
+    width: 17px;
+    height: 17px;
+    border-radius: 5px;
+    border: 1px solid var(--borda-hover);
+    background-color: var(--bg);
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.checkbox-linha input[type="checkbox"]:checked {
+    background-color: var(--acento);
+    border-color: var(--acento);
+}
+
+.checkbox-linha input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: solid #0c0d10;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.campo-oculto {
+    display: none;
+}
+
+/* Inputs */
 input {
-    padding: 14px;
+    padding: 12px 14px;
     border-radius: 8px;
-    border: 1px solid #333;
-    background-color: #282828;
-    color: white;
-    font-size: 16px;
+    border: 1px solid var(--borda-hover);
+    background-color: var(--bg);
+    color: var(--texto);
+    font-size: 14px;
     outline: none;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder {
+    color: var(--texto-mais-fraco);
 }
 
 input:focus {
-    border-color: #1db954;
+    border-color: var(--acento);
+    box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.12);
 }
 
 /* Botões */
 button {
-    padding: 14px;
-    border-radius: 25px;
+    padding: 12px 18px;
+    border-radius: 8px;
     border: none;
-    background-color: #1db954;
-    color: #000;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    transition: filter 0.15s, transform 0.1s;
 }
 
-button:hover {
-    background-color: #1ed760;
-    transform: scale(1.02);
+button:active {
+    transform: scale(0.98);
+}
+
+.btn-primario,
+.card-login button,
+.painel-cadastro button {
+    background-color: var(--acento);
+    color: #0c0d10;
+}
+
+.btn-primario:hover,
+.card-login button:hover,
+.painel-cadastro button:hover {
+    filter: brightness(1.1);
 }
 
 .btn-remover {
-    background-color: #e91429;
-    color: white;
+    background-color: transparent;
+    color: var(--erro);
+    border: 1px solid rgba(241, 101, 101, 0.35);
 }
 
 .btn-remover:hover {
-    background-color: #f01e35;
+    background-color: rgba(241, 101, 101, 0.08);
 }
 
-/* Cards das Músicas */
+/* Grid de músicas */
+.grid-musicas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
 .musica-item {
-    background-color: #181818;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    width: 100%;
-    max-width: 500px;
+    background-color: var(--bg-elevado);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    transition: background-color 0.3s;
+    gap: 12px;
+    transition: border-color 0.2s, transform 0.15s;
 }
 
 .musica-item:hover {
-    background-color: #282828;
+    border-color: var(--borda-hover);
+    transform: translateY(-2px);
 }
 
 .musica-info {
-    font-size: 16px;
+    display: flex;
+    flex-direction: column;
 }
 
 .musica-info strong {
-    font-size: 18px;
-    color: #fff;
+    font-size: 15px;
+    color: var(--texto);
 }
 
-audio {
+.musica-info span {
+    font-size: 13px;
+    color: var(--texto-fraco);
+}
+
+.musica-item iframe {
+    border-radius: 8px;
+    border: 1px solid var(--borda);
+}
+
+.acoes {
+    display: flex;
+    gap: 8px;
+}
+
+.acoes form {
+    flex: 1;
+}
+
+.acoes button {
     width: 100%;
-    height: 40px;
-    outline: none;
 }
