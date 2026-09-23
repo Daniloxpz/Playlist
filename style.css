@@ -233,7 +233,7 @@ body {
 }
 
 .campo-oculto {
-    display: none;
+    display: none !important;
 }
 
 /* Inputs */
@@ -351,4 +351,55 @@ button:active {
 
 .acoes button {
     width: 100%;
+}
+
+/* ---- ESTILOS PARA A LISTA DE USUÁRIOS NO ADMIN ---- */
+.lista-usuarios {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.usuario-item {
+    background-color: var(--bg-elevado);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.2s;
+}
+
+.usuario-item:hover {
+    border-color: var(--borda-hover);
+}
+
+.usuario-info strong {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: var(--texto);
+    margin-bottom: 4px;
+}
+
+.usuario-info span {
+    font-size: 14px;
+    color: var(--texto-fraco);
+}
+
+/* ---- ESTILOS PARA FORMULÁRIOS DE LOGIN E CADASTRO ---- */
+.link-form {
+    color: var(--acento);
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 15px;
+    transition: filter 0.2s;
+}
+
+.link-form:hover {
+    filter: brightness(1.2);
+    text-decoration: underline;
 }

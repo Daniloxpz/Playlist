@@ -1,7 +1,10 @@
 <?php
 require 'config.php';
+
 if (!isset($_SESSION['usuario_id'])) { header("Location: index.php"); exit; }
+
 $usuario_id = $_SESSION['usuario_id'];
+$is_admin   = $_SESSION['is_admin'] ?? 0;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['remover_id'])) {
     $id_relacao = (int) $_POST['remover_id'];
@@ -33,6 +36,10 @@ $minha_playlist = $stmt->get_result();
     <header class="topbar">
         <h1 class="logo">playlist<span>.</span></h1>
         <nav>
+            <?php if ($is_admin == 1): ?>
+                <span class="badge-admin">Admin</span>
+                <a href="admin_usuarios.php">Gerir Usuários</a>
+            <?php endif; ?>
             <a href="musicas.php">Catálogo</a>
             <a href="logout.php">Sair</a>
         </nav>

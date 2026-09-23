@@ -1,5 +1,7 @@
 # Catálogo de Músicas Web 🎵
 
+# Catálogo de Músicas Web 🎵
+
 Um sistema web simples desenvolvido em PHP e MySQL que permite aos utilizadores visualizar um catálogo geral de músicas do YouTube, adicionar faixas às suas playlists pessoais e ouvir os áudios diretamente na plataforma.
 
 ## 🛠️ Tecnologias Utilizadas
@@ -33,4 +35,6 @@ Certifique-se de que tem o **XAMPP** instalado no seu computador.
 
 ## 🔑 Níveis de Acesso
 * **Utilizador Padrão:** Pode criar uma conta, ver o catálogo geral, ouvir as músicas e adicioná-las/removê-las da sua playlist pessoal.
-* **Administrador (ID 1):** O primeiro utilizador registado no sistema recebe privilégios exclusivos de administrador, podendo visualizar o botão para **excluir** músicas permanentemente do catálogo geral.
+* **Administrador:** Para entrar como administrador, marque a opção **"Entrar como administrador"** no ecrã de login e introduza a senha de administração (definida previamente no ficheiro `config.php`). Privilégios do admin:
+  * **Gerir Catálogo:** Pode excluir músicas permanentemente do catálogo geral (removendo-as automaticamente de todos os utilizadores).
+  * **Gerir Utilizadores:** Tem acesso a um painel exclusivo para visualizar a lista de utilizadores e excluir contas (ao excluir um utilizador, a sua playlist é apagada automaticamente do sistema).
