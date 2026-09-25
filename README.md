@@ -1,7 +1,5 @@
 # Catálogo de Músicas Web 🎵
 
-# Catálogo de Músicas Web 🎵
-
 Um sistema web simples desenvolvido em PHP e MySQL que permite aos utilizadores visualizar um catálogo geral de músicas do YouTube, adicionar faixas às suas playlists pessoais e ouvir os áudios diretamente na plataforma.
 
 ## 🛠️ Tecnologias Utilizadas

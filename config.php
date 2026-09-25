@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$db   = 'playlist_app';
+$host = 'sql309.infinityfree.com';
+$user = 'if0_42975526';
+$pass = 'Senha1234xp'; // defina sua senha aqui
+$db   = 'if0_42975526_playlist';
 
 define('ADMIN_PASSWORD', '123456'); // defina sua senha de admin aqui
 
